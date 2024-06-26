@@ -23,8 +23,8 @@ function App({data}) {
     <div style={styles.card_list}>
       {data.map((item) =>(
         <div key={item.id} style={styles.card}>
-          <p><span style={{fontWeight:'bold'}}>Name: </span>{item.parameters[1].value}</p>
-          <p><span style={{fontWeight:'bold'}}>Price: Rs </span>{item.price.value.raw}</p>
+          <p><span style={{fontWeight:'bold'}}>Name : </span>{item.parameters[1].value}</p>
+          <p><span style={{fontWeight:'bold'}}>Price : Rs </span>{item.price.value.raw}</p>
         </div>
       ))}
     </div>

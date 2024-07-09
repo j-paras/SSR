@@ -19,7 +19,7 @@ export const fetchData = ( ) => ( dispatch ) =>{
   return fetchCircuits()
     .then((res) => {
     //   console.log("fetchCircuits API response:", res); 
-      dispatch(storeData(res));
+     return dispatch(storeData(res));
     })
     .catch((error) => {
       console.error("Error fetching data:", error);

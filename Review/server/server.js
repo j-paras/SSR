@@ -13,16 +13,21 @@ import { fetchData } from "../src/store/store";
 const app = express();
 app.get("/*", async (req, res) => {
   const store = createStore();
-  store.dispatch(fetchData());
-  store.subscribe(()=>console.log(store.getState()))
+  await store.dispatch(fetchData());
+  // const reduxState = store.getState();
+
+  let reduxState;
+  store.subscribe(() => {
+    reduxState = store.getState();
+    console.log(reduxState);
+  })
     const jsx = (
         <ReduxProvider store={store}>
                 <App />
         </ReduxProvider>
     );
     const reactDom = renderToString(jsx);
-    const reduxState = store.getState();
-    console.log(reduxState)
+    console.log("OUTSIDE",reduxState)
 
     res.writeHead(200, { "Content-Type": "text/html" });
     res.end(htmlTemplate(reactDom, reduxState));

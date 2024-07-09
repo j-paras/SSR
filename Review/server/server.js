@@ -14,6 +14,7 @@ const app = express();
 app.get("/*", async (req, res) => {
   const store = createStore();
   store.dispatch(fetchData());
+  store.subscribe(()=>console.log(store.getState()))
     const jsx = (
         <ReduxProvider store={store}>
                 <App />
@@ -21,6 +22,7 @@ app.get("/*", async (req, res) => {
     );
     const reactDom = renderToString(jsx);
     const reduxState = store.getState();
+    console.log(reduxState)
 
     res.writeHead(200, { "Content-Type": "text/html" });
     res.end(htmlTemplate(reactDom, reduxState));

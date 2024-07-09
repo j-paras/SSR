@@ -20,29 +20,30 @@ const styles = {
 const App = ({ data, fetchData }) => {
   useEffect(() => {
     fetchData();
-    // console.log(fetchData())
-  }, [fetchData]);
+  }, []);
 
   return (
     <div>
       <div style={styles.card_list}>
-        {/* {console.log(data)} */}
-        {data.map((item) => (
+        {/* {console.log(data.data)} */}
+        {/* {data.map((item) => (
           <div key={item.id} style={styles.card}>
             <p><span style={{ fontWeight: 'bold' }}>Name : </span>{item.parameters[1].value}</p>
             <p><span style={{ fontWeight: 'bold' }}>Price : Rs </span>{item.price.value.raw}</p>
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );
 }
-const mapStateToProps = (state) => ({
-  data: state.data, 
-});
+const mapStateToProps = (state) => {
+  return {
+    data: state.data }
+};
 
-const mapDispatchToProps = {
-  fetchData, 
+const mapDispatchToProps = (dispatch)=>{
+  return {
+    fetchData:()=>dispatch(fetchData())}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

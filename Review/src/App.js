@@ -18,20 +18,19 @@ const styles = {
 };
 
 const App = ({ data, fetchData }) => {
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   return (
     <div>
       <div style={styles.card_list}>
-        {/* {console.log(data.data)} */}
-        {/* {data.map((item) => (
+        {data.data.map((item) => (
           <div key={item.id} style={styles.card}>
             <p><span style={{ fontWeight: 'bold' }}>Name : </span>{item.parameters[1].value}</p>
             <p><span style={{ fontWeight: 'bold' }}>Price : Rs </span>{item.price.value.raw}</p>
           </div>
-        ))} */}
+        ))}
       </div>
     </div>
   );

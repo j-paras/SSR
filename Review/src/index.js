@@ -7,7 +7,6 @@ import { Provider as ReduxProvider } from 'react-redux';
 import  createStore from './store/store'
 
 const store = createStore(window.REDUX_DATA);
-console.log(window.REDUX_DATA)
 
 ReactDOM.hydrateRoot(document,
   <ReduxProvider store={store}>

@@ -8,8 +8,8 @@ export function fetchCircuits( ) {
             return res.json();
         })
         .then((res) => {
-            console.log("API response data:", res.data.data);
-            return res.data.data;
+            // console.log("API response data:", res.data);
+            return res.data;
         })
         .catch((error) => {
             console.error("Error fetching circuits:", error);

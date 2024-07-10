@@ -6,24 +6,23 @@ import App from "../src/App";
 import { renderToString } from "react-dom/server";
 import { Provider as ReduxProvider } from "react-redux";
 import createStore from "../src/store/store";
-// import { fetchCircuits } from "../src/store/api";
 import { fetchData } from "../src/store/store";
 
 
 const app = express();
 app.get("/*", async (req, res) => {
   const store = createStore();
-  store.dispatch(fetchData());
+  store.dispatch(fetchData()).then(() => {
+    let reduxState = store.getState();
     const jsx = (
-        <ReduxProvider store={store}>
-                <App />
-        </ReduxProvider>
+      <ReduxProvider store={store}>
+        <App />
+      </ReduxProvider>
     );
     const reactDom = renderToString(jsx);
-    const reduxState = store.getState();
-
     res.writeHead(200, { "Content-Type": "text/html" });
     res.end(htmlTemplate(reactDom, reduxState));
+  });
 });
 
 function htmlTemplate(reactDom, reduxState) {
